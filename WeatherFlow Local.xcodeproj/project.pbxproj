@@ -11,6 +11,8 @@
 		0179C8F827A5720E00EEFA9E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179C8F727A5720E00EEFA9E /* ContentView.swift */; };
 		0179C8FA27A5720F00EEFA9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0179C8F927A5720F00EEFA9E /* Assets.xcassets */; };
 		0179C8FD27A5720F00EEFA9E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0179C8FC27A5720F00EEFA9E /* Preview Assets.xcassets */; };
+		0179C90527A5724900EEFA9E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179C90427A5724900EEFA9E /* Model.swift */; };
+		0179C90827A5920F00EEFA9E /* json-utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179C90727A5920F00EEFA9E /* json-utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,10 @@
 		0179C8F927A5720F00EEFA9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0179C8FC27A5720F00EEFA9E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0179C8FE27A5720F00EEFA9E /* WeatherFlow_Local.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherFlow_Local.entitlements; sourceTree = "<group>"; };
+		0179C90427A5724900EEFA9E /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		0179C90627A5729D00EEFA9E /* WeatherFlow-Local-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "WeatherFlow-Local-Info.plist"; sourceTree = SOURCE_ROOT; };
+		0179C90727A5920F00EEFA9E /* json-utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "json-utils.swift"; sourceTree = "<group>"; };
+		0179C90927A5A50C00EEFA9E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +42,7 @@
 		0179C8E927A5720E00EEFA9E = {
 			isa = PBXGroup;
 			children = (
+				0179C90927A5A50C00EEFA9E /* README.md */,
 				0179C8F427A5720E00EEFA9E /* WeatherFlow Local */,
 				0179C8F327A5720E00EEFA9E /* Products */,
 			);
@@ -52,8 +59,11 @@
 		0179C8F427A5720E00EEFA9E /* WeatherFlow Local */ = {
 			isa = PBXGroup;
 			children = (
+				0179C90627A5729D00EEFA9E /* WeatherFlow-Local-Info.plist */,
 				0179C8F527A5720E00EEFA9E /* WeatherFlow_LocalApp.swift */,
 				0179C8F727A5720E00EEFA9E /* ContentView.swift */,
+				0179C90427A5724900EEFA9E /* Model.swift */,
+				0179C90727A5920F00EEFA9E /* json-utils.swift */,
 				0179C8F927A5720F00EEFA9E /* Assets.xcassets */,
 				0179C8FE27A5720F00EEFA9E /* WeatherFlow_Local.entitlements */,
 				0179C8FB27A5720F00EEFA9E /* Preview Content */,
@@ -139,8 +149,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0179C90527A5724900EEFA9E /* Model.swift in Sources */,
 				0179C8F827A5720E00EEFA9E /* ContentView.swift in Sources */,
 				0179C8F627A5720E00EEFA9E /* WeatherFlow_LocalApp.swift in Sources */,
+				0179C90827A5920F00EEFA9E /* json-utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +288,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "WeatherFlow-Local-Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -303,6 +316,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "WeatherFlow-Local-Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

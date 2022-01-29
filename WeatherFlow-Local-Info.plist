@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSBonjourServices</key>
+	<array/>
+	<key>NSServices</key>
+	<array>
+		<dict>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>a</string>
+			</dict>
+			<key>NSMessage</key>
+			<string>a</string>
+			<key>NSPortName</key>
+			<string>a</string>
+			<key>NSReturnTypes</key>
+			<array>
+				<string>a</string>
+			</array>
+			<key>NSSendFileTypes</key>
+			<array>
+				<string>a</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
