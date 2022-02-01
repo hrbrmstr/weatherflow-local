@@ -6,7 +6,7 @@ struct WeatherFlow_LocalApp: App {
   var body: some Scene {
     WindowGroup {
       ContentView()
-        .navigationTitle("WeatherView Local")
+        .navigationTitle("WeatherFlow Local")
         .frame(
           minWidth: 500,
           maxWidth: 500,
