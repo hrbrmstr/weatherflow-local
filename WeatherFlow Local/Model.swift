@@ -46,28 +46,22 @@ class AppModel: NSObject, ObservableObject, GCDAsyncUdpSocketDelegate {
     
   }
   
-  func udpSocket(_ sock: GCDAsyncUdpSocket, didNotConnect error: Error?) {
-//    print("didNotConnect!")
-  }
-  
-  func udpSocket(_ sock: GCDAsyncUdpSocket, didSendDataWithTag tag: Int) {
-//    print("didSendDataWithTag")
-  }
-  
-  func udpSocket(_ sock: GCDAsyncUdpSocket, didConnectToAddress address: Data) {
-//    print("didConnectToAddress")
-  }
-  
-  func udpSocket(_ sock: GCDAsyncUdpSocket, didNotSendDataWithTag tag: Int, dueToError error: Error?) {
-//    print("didNotSendDataWithTag")
-  }
-  
-  func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
-//    print("udpSocketDidClose")
+  func startReceiver() {
+    
+    do {
+      
+      udpSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: .main)
+      
+      try udpSocket?.bind(toPort: 50222)
+      try udpSocket?.beginReceiving()
+      
+    } catch {
+      print("\(error)")
+    }
+    
   }
   
   func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
-//    print("incoming message1: \(String(describing: data))")
     
     let result = try? JSONDecoder().decode(JSON.self, from: data)
     
@@ -112,29 +106,6 @@ class AppModel: NSObject, ObservableObject, GCDAsyncUdpSocketDelegate {
       
     }
 
-    
-  }
-  
-  func udpSocket(sock: GCDAsyncUdpSocket!, didReceiveData data: NSData!, fromAddress address: NSData!,      withFilterContext filterContext: AnyObject!) {
-//    print("incoming message2: \(String(describing: data))");
-  }
-  
-  func startReceiver() {
-    
-    do {
-      
-      udpSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: .main)
-
-      try udpSocket?.bind(toPort: 50222)
-      try udpSocket?.beginReceiving()
-      try udpSocket?.enableBroadcast(true)
-      
-//      print("\(String(describing: udpSocket))")
-      
-    } catch {
-      print("\(error)")
-    }
-    
   }
 
 }
