@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0126B48E27ADD65000B5C32B /* TempestTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0126B48D27ADD5A300B5C32B /* TempestTypes.swift */; };
 		0179C8F627A5720E00EEFA9E /* WeatherFlow_LocalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179C8F527A5720E00EEFA9E /* WeatherFlow_LocalApp.swift */; };
 		0179C8F827A5720E00EEFA9E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179C8F727A5720E00EEFA9E /* ContentView.swift */; };
 		0179C8FA27A5720F00EEFA9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0179C8F927A5720F00EEFA9E /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0126B48D27ADD5A300B5C32B /* TempestTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempestTypes.swift; sourceTree = "<group>"; };
 		0179C8F227A5720E00EEFA9E /* WeatherFlow Local.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WeatherFlow Local.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0179C8F527A5720E00EEFA9E /* WeatherFlow_LocalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherFlow_LocalApp.swift; sourceTree = "<group>"; };
 		0179C8F727A5720E00EEFA9E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 		0179C8F427A5720E00EEFA9E /* WeatherFlow Local */ = {
 			isa = PBXGroup;
 			children = (
+				0126B48D27ADD5A300B5C32B /* TempestTypes.swift */,
 				0179C90627A5729D00EEFA9E /* WeatherFlow-Local-Info.plist */,
 				0179C8F527A5720E00EEFA9E /* WeatherFlow_LocalApp.swift */,
 				0179C8F727A5720E00EEFA9E /* ContentView.swift */,
@@ -160,6 +163,7 @@
 				0179C90527A5724900EEFA9E /* Model.swift in Sources */,
 				0179C8F827A5720E00EEFA9E /* ContentView.swift in Sources */,
 				0179C8F627A5720E00EEFA9E /* WeatherFlow_LocalApp.swift in Sources */,
+				0126B48E27ADD65000B5C32B /* TempestTypes.swift in Sources */,
 				0179C90827A5920F00EEFA9E /* json-utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

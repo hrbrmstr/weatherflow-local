@@ -5,6 +5,7 @@ struct WeatherFlow_LocalApp: App {
   
   var body: some Scene {
     WindowGroup {
+      
       ContentView()
         .navigationTitle("WeatherFlow Local")
         .frame(
@@ -14,7 +15,12 @@ struct WeatherFlow_LocalApp: App {
           maxHeight: 380,
           alignment: .center
         )
+      
+    }.commands {
+      CommandGroup(replacing: .newItem, addition: { })
     }
+    
   }
+  
   
 }
