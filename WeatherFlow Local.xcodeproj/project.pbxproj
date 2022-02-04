@@ -13,6 +13,7 @@
 		0179C8FD27A5720F00EEFA9E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0179C8FC27A5720F00EEFA9E /* Preview Assets.xcassets */; };
 		0179C90527A5724900EEFA9E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179C90427A5724900EEFA9E /* Model.swift */; };
 		0179C90827A5920F00EEFA9E /* json-utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179C90727A5920F00EEFA9E /* json-utils.swift */; };
+		01FE19D727AD484500B1B0FC /* CocoaAsyncSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 01FE19D627AD484500B1B0FC /* CocoaAsyncSocket */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01FE19D727AD484500B1B0FC /* CocoaAsyncSocket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +97,9 @@
 			dependencies = (
 			);
 			name = "WeatherFlow Local";
+			packageProductDependencies = (
+				01FE19D627AD484500B1B0FC /* CocoaAsyncSocket */,
+			);
 			productName = "WeatherFlow Local";
 			productReference = 0179C8F227A5720E00EEFA9E /* WeatherFlow Local.app */;
 			productType = "com.apple.product-type.application";
@@ -123,6 +128,9 @@
 				Base,
 			);
 			mainGroup = 0179C8E927A5720E00EEFA9E;
+			packageReferences = (
+				01FE19D527AD484500B1B0FC /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */,
+			);
 			productRefGroup = 0179C8F327A5720E00EEFA9E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -352,6 +360,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		01FE19D527AD484500B1B0FC /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/robbiehanson/CocoaAsyncSocket";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		01FE19D627AD484500B1B0FC /* CocoaAsyncSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01FE19D527AD484500B1B0FC /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */;
+			productName = CocoaAsyncSocket;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0179C8EA27A5720E00EEFA9E /* Project object */;
 }
