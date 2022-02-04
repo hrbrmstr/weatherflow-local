@@ -1,5 +1,5 @@
 #  WeatherFlow Local
 
-A very basic/skeleton SwiftUI macOS app for receiving and displaying WeatherFlow UDP broadcast messages using `NWConnection` and `NWListener`.
+A very basic/skeleton SwiftUI macOS app for receiving and displaying WeatherFlow UDP broadcast messages using [`CocoaAsyncSocket`](https://github.com/robbiehanson/CocoaAsyncSocket).
 
 ![](app-window.png)
