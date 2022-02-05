@@ -11,6 +11,7 @@ class AppModel: NSObject, ObservableObject, GCDAsyncUdpSocketDelegate {
   @Published var rapidWind: RapidWind?
   @Published var stationObservation: StationObservation?
   @Published var hubStatus: HubStatus?
+  @Published var deviceStatus: DeviceStatus?
   
   var conn: NWConnection?
   var listener: NWListener?
@@ -48,7 +49,26 @@ class AppModel: NSObject, ObservableObject, GCDAsyncUdpSocketDelegate {
     
     if (result != nil) {
       
-      if (result!.type.stringValue == "hub_status") {
+      if (result!.type.stringValue == "device_status") {
+                
+        DispatchQueue.main.async {
+          
+          self.deviceStatus = DeviceStatus(
+            serialNumber: result!.serial_number.stringValue!,
+            hubSerialNumber: result!.hub_sn.stringValue!,
+            timestamp: Date(timeIntervalSince1970: result!.timestamp.doubleValue!),
+            uptime: TimeInterval(result!.uptime.intValue!),
+            voltage: result!.voltage.doubleValue!,
+            firmwareRevision: result!.firmware_revision.intValue!,
+            RSSI: result!.rssi.doubleValue!,
+            hubRSSI: result!.hub_rssi.doubleValue!,
+            sensorStatus: result!.sensor_status.intValue!,
+            debug: result!.debug.intValue!
+          )
+          
+        }
+        
+      } else if (result!.type.stringValue == "hub_status") {
         
         DispatchQueue.main.async {
           

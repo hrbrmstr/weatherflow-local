@@ -1,5 +1,73 @@
 import Foundation
 
+enum Direction: String {
+  case n, nne, ne, ene, e, ese, se, sse, s, ssw, sw, wsw, w, wnw, nw, nnw
+}
+
+extension Direction: CustomStringConvertible  {
+  static let all: [Direction] = [ .n, .nne, .ne, .ene, .e, .ese, .se, .sse, .s, .ssw, .sw, .wsw, .w, .wnw, .nw, .nnw ]
+  init(_ direction: Double) {
+    let index = Int((direction + 11.25).truncatingRemainder(dividingBy: 360) / 22.5)
+    self = Direction.all[index]
+  }
+  var description: String { return rawValue.uppercased() }
+}
+
+//{
+//  "serial_number": "ST-00055227",
+//  "type": "device_status",
+//  "hub_sn": "HB-00000001",
+//  "timestamp": 1510855923,
+//  "uptime": 2189,
+//  "voltage": 3.50,
+//  "firmware_revision": 17,
+//  "rssi": -17,
+//  "hub_rssi": -87,
+//  "sensor_status": 0,
+//  "debug": 0
+//}
+
+public struct DeviceStatus {
+  
+  var serialNumber: String
+  var hubSerialNumber: String
+  var timestamp: Date
+  var uptime: TimeInterval
+  var voltage: Double
+  var firmwareRevision: Int
+  var RSSI: Double
+  var hubRSSI: Double
+  var sensorStatus: Int
+  var debug: Int
+  
+  var uptimeString: String {
+    let formatter = DateComponentsFormatter()
+    formatter.allowedUnits = [.hour, .minute, .second]
+    formatter.unitsStyle = .brief
+    formatter.zeroFormattingBehavior = .pad
+    
+    return(String(formatter.string(from: TimeInterval(uptime))!))
+  }
+  
+  var voltageString: String {
+    String(format: "%2.1f volts", voltage)
+  }
+  
+  var timestampString: String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.timeZone = TimeZone(abbreviation: "EST5EDT")
+    dateFormatter.locale = NSLocale.current
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    
+    return(dateFormatter.string(from: timestamp))
+  }
+  
+  var hubLine: String {
+    return("🛰: \(serialNumber) @ \(timestampString) | Uptime: \(uptimeString) | 🔋: \(voltageString)")
+  }
+  
+}
+
 //{
 //  "serial_number": "SK-00008453",
 //  "type":"rapid_wind",
@@ -15,10 +83,24 @@ public struct RapidWind {
   var windSpeed: Double // mps
   var windDirection: Double // degrees
   
+  var windString: String {
+    
+    let timeFormatter = DateFormatter()
+    timeFormatter.locale = NSLocale.current
+    timeFormatter.dateFormat = "HH:mm:ss"
+    
+    return(
+      String(
+        format: "💨 %.1f mph \(Direction(windDirection).description) @ \(timeFormatter.string(from: timeEpoch))",
+        windSpeed / 0.44704
+      )
+    )
+    
+  }
+  
   var windVals: [String] {
     
     let dateFormatter = DateFormatter()
-    dateFormatter.timeZone = TimeZone(abbreviation: "EST5EDT")
     dateFormatter.locale = NSLocale.current
     dateFormatter.dateFormat = "yyyy-MM-dd\nHH:mm:ss"
     
@@ -83,11 +165,46 @@ public struct StationObservation {
   var battery: Double
   var reportInterval: Double
   var firmwareRevision: Int
+
+  var uvString: String {
+    String(format: "☢️%4.1f", UV)
+  }
   
+  var illuminanceString: String {
+    String(format: "💡%5d Lux", Int(illuminance))
+  }
+  
+  var solarString: String {
+    String(format: "☀️%3d W/m²", Int(solarRadiation))
+  }
+
+  var tempString: String {
+    String(format: "🌡%.1f°F", ((airTemperature * 9/5)) + 32.0)
+  }
+  
+  var humidString: String {
+    String(format: "💦%.1f%%", relativeHumidity)
+  }
+
+  var pressureString: String {
+    String(format: "⍖%.1fmb", stationPressure)
+  }
+  
+  var timeString: String {
+    
+    let timeFormatter = DateFormatter()
+    timeFormatter.locale = NSLocale.current
+    timeFormatter.dateFormat = "HH:mm:ss"
+
+    return(
+      timeFormatter.string(from: timeEpoch)
+    )
+    
+  }
+
   var observations: [String] {
     
     let dateFormatter = DateFormatter()
-    dateFormatter.timeZone = TimeZone(abbreviation: "EST5EDT")
     dateFormatter.locale = NSLocale.current
     dateFormatter.dateFormat = "yyyy-MM-dd\nHH:mm:ss"
     

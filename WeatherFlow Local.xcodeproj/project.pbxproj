@@ -14,7 +14,7 @@
 		0179C8FD27A5720F00EEFA9E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0179C8FC27A5720F00EEFA9E /* Preview Assets.xcassets */; };
 		0179C90527A5724900EEFA9E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179C90427A5724900EEFA9E /* Model.swift */; };
 		0179C90827A5920F00EEFA9E /* json-utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179C90727A5920F00EEFA9E /* json-utils.swift */; };
-		01FE19D727AD484500B1B0FC /* CocoaAsyncSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 01FE19D627AD484500B1B0FC /* CocoaAsyncSocket */; };
+		01FE19DA27AF366200B1B0FC /* CocoaAsyncSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 01FE19D927AF366200B1B0FC /* CocoaAsyncSocket */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01FE19D727AD484500B1B0FC /* CocoaAsyncSocket in Frameworks */,
+				01FE19DA27AF366200B1B0FC /* CocoaAsyncSocket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +101,7 @@
 			);
 			name = "WeatherFlow Local";
 			packageProductDependencies = (
-				01FE19D627AD484500B1B0FC /* CocoaAsyncSocket */,
+				01FE19D927AF366200B1B0FC /* CocoaAsyncSocket */,
 			);
 			productName = "WeatherFlow Local";
 			productReference = 0179C8F227A5720E00EEFA9E /* WeatherFlow Local.app */;
@@ -132,7 +132,7 @@
 			);
 			mainGroup = 0179C8E927A5720E00EEFA9E;
 			packageReferences = (
-				01FE19D527AD484500B1B0FC /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */,
+				01FE19D827AF366200B1B0FC /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */,
 			);
 			productRefGroup = 0179C8F327A5720E00EEFA9E /* Products */;
 			projectDirPath = "";
@@ -222,7 +222,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -277,7 +277,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -306,6 +306,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "is.rud.WeatherFlow-Local";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -334,6 +335,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "is.rud.WeatherFlow-Local";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -366,20 +368,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		01FE19D527AD484500B1B0FC /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */ = {
+		01FE19D827AF366200B1B0FC /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/robbiehanson/CocoaAsyncSocket";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		01FE19D627AD484500B1B0FC /* CocoaAsyncSocket */ = {
+		01FE19D927AF366200B1B0FC /* CocoaAsyncSocket */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 01FE19D527AD484500B1B0FC /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */;
+			package = 01FE19D827AF366200B1B0FC /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */;
 			productName = CocoaAsyncSocket;
 		};
 /* End XCSwiftPackageProductDependency section */
