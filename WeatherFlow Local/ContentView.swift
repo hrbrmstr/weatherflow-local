@@ -1,5 +1,135 @@
 import SwiftUI
 
+struct NonOptionalText: View {
+  
+  var txt: String
+  var size: Double = 12
+  
+  var body: some View {
+    Text(txt)
+      .frame(alignment: .leading)
+      .font(.system(size: size, weight: .light, design: .monospaced))
+  }
+  
+}
+
+struct OptionalText: View {
+  
+  var txt: String?
+  var size: Double = 12
+  
+  var body: some View {
+    Text(txt ?? "⏳")
+      .frame(alignment: .leading)
+      .font(.system(size: size, weight: .light, design: .monospaced))
+  }
+  
+}
+
+struct LuxRow: View {
+  
+  var uv: String?
+  var illuminance: String?
+  var solar: String?
+  
+  var body: some View {
+    HStack {
+      OptionalText(txt: uv)
+      OptionalText(txt: illuminance)
+      OptionalText(txt: solar)
+    }
+    Divider()
+  }
+  
+}
+
+struct StationRow: View {
+  
+  var temp: String?
+  var humid: String?
+  var pressure: String?
+  var time: String?
+
+  var body: some View {
+    HStack {
+      OptionalText(txt: temp)
+      OptionalText(txt: humid)
+      OptionalText(txt: pressure)
+      NonOptionalText(txt: "@")
+      OptionalText(txt: time)
+    }
+    Divider()
+  }
+  
+}
+
+struct StrikeRainRow: View {
+  
+  var strikeCount: String?
+  var strikeDistance: String?
+  var rain: String?
+
+  var body: some View {
+    HStack {
+      OptionalText(txt: strikeCount)
+      OptionalText(txt: strikeDistance)
+      OptionalText(txt: rain)
+    }
+    Divider()
+  }
+  
+}
+
+struct DeviceRow: View {
+  
+  var serial: String?
+  var uptime: String?
+  var voltage: String?
+
+  var body: some View {
+    HStack {
+      
+      NonOptionalText(txt: "🛰", size: 9)
+      OptionalText(txt: serial, size: 9)
+      
+      Divider()
+      
+      OptionalText(txt: uptime, size: 9)
+      
+      Divider()
+      
+      NonOptionalText(txt: "🔋", size: 9)
+      OptionalText(txt: voltage, size: 9)
+      
+    }
+    .frame(alignment: .leading)
+    
+    Divider()
+  }
+  
+}
+
+struct HubRow: View {
+  
+  var serial: String?
+  var uptime: String?
+  
+  var body: some View {
+    HStack {
+      
+      NonOptionalText(txt: "🎛", size: 9)
+      OptionalText(txt: serial, size: 9)
+      
+      Divider()
+
+      OptionalText(txt: uptime, size: 9)
+      
+    }
+    .frame(alignment: .leading)
+
+  }
+}
+
 var m = AppModel()
 
 struct WeatherView: View {
@@ -10,97 +140,40 @@ struct WeatherView: View {
     
     VStack {
 
-      Text(model.rapidWind?.windString ?? "")
-        .frame(alignment: .leading)
-        .font(.system(size: 12, weight: .light, design: .monospaced))
+      OptionalText(txt: model.rapidWind?.windString)
       
       Divider()
 
-      HStack {
-        
-        Text(model.stationObservation?.tempString ?? "")
-          .frame(alignment: .leading)
-          .font(.system(size: 12, weight: .light, design: .monospaced))
-        
-        Text(model.stationObservation?.humidString ?? "")
-          .frame(alignment: .leading)
-          .font(.system(size: 12, weight: .light, design: .monospaced))
-
-        Text(model.stationObservation?.pressureString ?? "")
-          .frame(alignment: .leading)
-          .font(.system(size: 12, weight: .light, design: .monospaced))
-        
-        Text("@")
-          .font(.system(size: 12, weight: .light, design: .monospaced))
-        
-        Text(model.stationObservation?.timeString ?? "")
-          .frame(alignment: .leading)
-          .font(.system(size: 12, weight: .light, design: .monospaced))
-
-      }
+      StationRow(
+        temp: model.stationObservation?.tempString,
+        humid: model.stationObservation?.humidString,
+        pressure: model.stationObservation?.pressureString,
+        time: model.stationObservation?.timeString
+      )
       
-      Divider()
-
-      HStack {
-        
-        Text(model.stationObservation?.uvString ?? "")
-          .frame(alignment: .leading)
-          .font(.system(size: 12, weight: .light, design: .monospaced))
-        
-        Text(model.stationObservation?.illuminanceString ?? "")
-          .frame(alignment: .leading)
-          .font(.system(size: 12, weight: .light, design: .monospaced))
-        
-        Text(model.stationObservation?.solarString ?? "")
-          .frame(alignment: .leading)
-          .font(.system(size: 12, weight: .light, design: .monospaced))
-
-      }
+      LuxRow(
+        uv: model.stationObservation?.uvString,
+        illuminance: model.stationObservation?.illuminanceString,
+        solar: model.stationObservation?.solarString
+      )
       
-      Divider()
+      StrikeRainRow(
+        strikeCount: model.stationObservation?.strikeCountString,
+        strikeDistance: model.stationObservation?.strikeDistanceString,
+        rain: model.stationObservation?.rainString
+      )
+                
+      DeviceRow(
+        serial: model.deviceStatus?.serialNumber,
+        uptime: model.deviceStatus?.uptimeString,
+        voltage: model.deviceStatus?.voltageString
+      )
       
-      HStack {
-
-        Text("🛰")
-          .font(.system(size: 9, weight: .light, design: .monospaced))
-
-        Text(model.deviceStatus?.serialNumber ?? "")
-          .font(.system(size: 9, weight: .light, design: .monospaced))
-        
-        Divider()
-        
-        Text(model.deviceStatus?.uptimeString ?? "")
-          .font(.system(size: 9, weight: .light, design: .monospaced))
-        
-        Divider()
-        
-        Text("🔋")
-          .font(.system(size: 9, weight: .light, design: .monospaced))
-        
-        Text(model.deviceStatus?.voltageString ?? "")
-          .font(.system(size: 9, weight: .light, design: .monospaced))
-
-      }
-      .frame(alignment: .leading)
-
-      Divider()
-      
-      HStack {
-        
-        Text("🎛")
-          .font(.system(size: 9, weight: .light, design: .monospaced))
-        
-        Text(model.hubStatus?.serialNumber ?? "")
-          .font(.system(size: 9, weight: .light, design: .monospaced))
-
-        Divider()
-        
-        Text(model.hubStatus?.hubUptime ?? "")
-          .font(.system(size: 9, weight: .light, design: .monospaced))
-        
-      }
-      .frame(alignment: .leading)
-      
+      HubRow(
+        serial: model.hubStatus?.serialNumber,
+        uptime: model.hubStatus?.hubUptime
+      )
+            
     }
     .frame(alignment: .leading)
     .padding()
@@ -110,66 +183,3 @@ struct WeatherView: View {
 
   
 }
-
-//struct ContentView: View {
-//  
-//  @ObservedObject var model = m
-//  
-//  var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
-//  var columnsFixed: [GridItem] = Array(repeating: .init(.fixed(90)), count: 2)
-//  var columnsOne: [GridItem] = Array(repeating: .init(.fixed(100)), count: 1)
-//  
-//  var body: some View {
-//    
-//    VStack {
-//      
-//      HStack {
-//        
-//        VStack(alignment: .center) {
-//          LazyVGrid(columns: columnsOne) {
-//            ForEach(model.rapidWind?.windVals ?? [], id: \.self) { txt in
-//              Text("\(txt)")
-//                .multilineTextAlignment(.center)
-//                .frame(width: 90, height: 90, alignment: .center)
-//                .background(
-//                  RoundedRectangle(cornerRadius: 10)
-//                    .fill(.tertiary)
-//                )
-//                .padding(5)
-//            }
-//          }
-//        }
-//        
-//        Divider()
-//        
-//        VStack(alignment: .center) {
-//          LazyVGrid(columns: columnsFixed) {
-//            ForEach(model.stationObservation?.observations ?? [], id: \.self) { txt in
-//             Text("\(txt)")
-//                .multilineTextAlignment(.center)
-//                .frame(width: 100, height: 100, alignment: .center)
-//                .background(
-//                  RoundedRectangle(cornerRadius: 10)
-//                    .fill(.tertiary)
-//                .padding(5)
-//                )
-//            }
-//          }
-//        }
-//        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-//        .frame(width:300, height: 340)
-//        
-//      }
-//      
-//      Text(model.hubStatus? .hubLine ?? "Hub: || Uptime: | Rev:")
-//        .font(.caption2)
-//        .frame(width: 500)
-//        .padding(6)
-//      
-//    }
-//    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-//    
-//  }
-//  
-//}
-

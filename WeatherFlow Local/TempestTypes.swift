@@ -166,6 +166,18 @@ public struct StationObservation {
   var reportInterval: Double
   var firmwareRevision: Int
 
+  var strikeCountString: String {
+    String(format: "🌩 %3d", lightningStrikeCount)
+  }
+  
+  var strikeDistanceString: String {
+    String(format: "(μ)📏 %4.1d mm", lightningStrikeAvgDistance)
+  }
+
+  var rainString: String {
+    String(format: "🌧 (minute) %3.1d", rain)
+  }
+  
   var uvString: String {
     String(format: "☢️%4.1f", UV)
   }

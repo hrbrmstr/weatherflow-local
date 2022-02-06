@@ -9,26 +9,14 @@ struct WeatherFlow_LocalApp: App {
       WeatherView()
         .navigationTitle("WeatherFlow Local")
         .frame(
-//          minWidth: 500,
-//          maxWidth: 500,
-//          minHeight: 380,
-//          maxHeight: 380,
+          minWidth: 316,
+          minHeight: 197,
           alignment: .center
         )
         .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in
           hideButtons()
         })
 
-//      ContentView()
-//        .navigationTitle("WeatherFlow Local")
-//        .frame(
-//          minWidth: 500,
-//          maxWidth: 500,
-//          minHeight: 380,
-//          maxHeight: 380,
-//          alignment: .center
-//        )
-      
     }
     .windowStyle(DefaultWindowStyle())
     .commands {
