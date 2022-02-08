@@ -25,13 +25,19 @@ struct WeatherFlow_LocalApp: App {
   }
   
   func hideButtons() {
+    
     for window in NSApplication.shared.windows {
-      window.isMovableByWindowBackground = true
-      window.collectionBehavior.insert(.fullScreenAuxiliary)
-      window.standardWindowButton(NSWindow.ButtonType.zoomButton)!.isHidden = true
-      window.standardWindowButton(NSWindow.ButtonType.closeButton)!.isHidden = true
-      window.standardWindowButton(NSWindow.ButtonType.miniaturizeButton)!.isHidden = true
+      
+      if (window.title == "WeatherFlow Local") {
+        window.isMovableByWindowBackground = true
+        window.collectionBehavior.insert(.fullScreenAuxiliary)
+        window.standardWindowButton(NSWindow.ButtonType.zoomButton)!.isHidden = true
+        window.standardWindowButton(NSWindow.ButtonType.closeButton)!.isHidden = true
+        window.standardWindowButton(NSWindow.ButtonType.miniaturizeButton)!.isHidden = true
+      }
+      
     }
+    
   }
   
 }
