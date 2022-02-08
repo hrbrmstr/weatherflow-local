@@ -35,7 +35,9 @@ struct LuxRow: View {
   var body: some View {
     HStack {
       OptionalText(txt: uv)
+      Divider()
       OptionalText(txt: illuminance)
+      Divider()
       OptionalText(txt: solar)
     }
     Divider()
@@ -53,7 +55,9 @@ struct StationRow: View {
   var body: some View {
     HStack {
       OptionalText(txt: temp)
+      Divider()
       OptionalText(txt: humid)
+      Divider()
       OptionalText(txt: pressure)
       NonOptionalText(txt: "@")
       OptionalText(txt: time)
@@ -72,7 +76,9 @@ struct StrikeRainRow: View {
   var body: some View {
     HStack {
       OptionalText(txt: strikeCount)
+      Divider()
       OptionalText(txt: strikeDistance)
+      Divider()
       OptionalText(txt: rain)
     }
     Divider()

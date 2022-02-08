@@ -9,8 +9,8 @@ struct WeatherFlow_LocalApp: App {
       WeatherView()
         .navigationTitle("WeatherFlow Local")
         .frame(
-          minWidth: 386,
-          minHeight: 197,
+          minWidth: 400,
+          minHeight: 200,
           alignment: .center
         )
         .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in
