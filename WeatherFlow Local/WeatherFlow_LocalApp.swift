@@ -9,7 +9,7 @@ struct WeatherFlow_LocalApp: App {
       WeatherView()
         .navigationTitle("WeatherFlow Local")
         .frame(
-          minWidth: 316,
+          minWidth: 386,
           minHeight: 197,
           alignment: .center
         )

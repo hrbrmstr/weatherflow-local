@@ -171,11 +171,11 @@ public struct StationObservation {
   }
   
   var strikeDistanceString: String {
-    String(format: "(μ)📏 %4.1d mm", lightningStrikeAvgDistance)
+    String(format: "(μ)📏 %4.1d km", lightningStrikeAvgDistance)
   }
 
   var rainString: String {
-    String(format: "🌧 (minute) %3.1d", rain)
+    String(format: "🌧 (minute) %10.6f mm", rain)
   }
   
   var uvString: String {

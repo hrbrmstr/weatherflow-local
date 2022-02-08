@@ -104,7 +104,7 @@ class AppModel: NSObject, ObservableObject, GCDAsyncUdpSocketDelegate {
         }
         
       } else if (result!.type.stringValue == "obs_st") {
-        
+                
         DispatchQueue.main.async {
           
           self.stationObservation = StationObservation(
