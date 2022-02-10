@@ -62,10 +62,6 @@ public struct DeviceStatus {
     return(dateFormatter.string(from: timestamp))
   }
   
-  var hubLine: String {
-    return("🛰: \(serialNumber) @ \(timestampString) | Uptime: \(uptimeString) | 🔋: \(voltageString)")
-  }
-  
 }
 
 //{
@@ -83,33 +79,20 @@ public struct RapidWind {
   var windSpeed: Double // mps
   var windDirection: Double // degrees
   
-  var windString: String {
-    
+  var timeString: String {
     let timeFormatter = DateFormatter()
     timeFormatter.locale = NSLocale.current
     timeFormatter.dateFormat = "HH:mm:ss"
-    
+    return(String("\(timeFormatter.string(from: timeEpoch))"))
+  }
+  
+  var speedString: String {
     return(
       String(
-        format: "💨 %.1f mph \(Direction(windDirection).description) @ \(timeFormatter.string(from: timeEpoch))",
+        format: "%.1f mph \(Direction(windDirection).description)",
         windSpeed / 0.44704
       )
     )
-    
-  }
-  
-  var windVals: [String] {
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.locale = NSLocale.current
-    dateFormatter.dateFormat = "yyyy-MM-dd\nHH:mm:ss"
-    
-    return([
-      dateFormatter.string(from: timeEpoch),
-      String(format: "💨%.1f\nmph", windSpeed / 0.44704),
-      String(format: "🧭%3.1f°", windDirection)
-    ])
-    
   }
   
 }
@@ -167,39 +150,39 @@ public struct StationObservation {
   var firmwareRevision: Int
 
   var strikeCountString: String {
-    String(format: "🌩 %3d", lightningStrikeCount)
+    String(format: "%3d", lightningStrikeCount)
   }
   
   var strikeDistanceString: String {
-    String(format: "(μ)📏 %4.1d km", lightningStrikeAvgDistance)
+    String(format: "(μ dist.) %4.1d km", lightningStrikeAvgDistance)
   }
 
   var rainString: String {
-    String(format: "🌧 (minute) %10.6f mm", rain)
+    String(format: "%10.6f mm last hr.", rain)
   }
   
   var uvString: String {
-    String(format: "☢️%4.1f", UV)
+    String(format: "%4.1f", UV)
   }
   
   var illuminanceString: String {
-    String(format: "💡%5d Lux", Int(illuminance))
+    String(format: "%5d Lux", Int(illuminance))
   }
   
   var solarString: String {
-    String(format: "☀️%3d W/m²", Int(solarRadiation))
+    String(format: "%3d W/m²", Int(solarRadiation))
   }
 
   var tempString: String {
-    String(format: "🌡%.1f°F", ((airTemperature * 9/5)) + 32.0)
+    String(format: "%.1f°F", ((airTemperature * 9/5)) + 32.0)
   }
   
   var humidString: String {
-    String(format: "💦%.1f%%", relativeHumidity)
+    String(format: "%.1f%%", relativeHumidity)
   }
 
   var pressureString: String {
-    String(format: "⍖%.1fmb", stationPressure)
+    String(format: "%.1fmb", stationPressure)
   }
   
   var timeString: String {

@@ -19,9 +19,32 @@ struct OptionalText: View {
   var size: Double = 12
   
   var body: some View {
-    Text(txt ?? "⏳")
-      .frame(alignment: .leading)
-      .font(.system(size: size, weight: .light, design: .monospaced))
+    if (txt != nil) {
+      Text(txt!)
+        .frame(alignment: .leading)
+        .font(.system(size: size, weight: .light, design: .monospaced))
+    } else {
+      Image(systemName: "hourglass.circle")
+        .foregroundColor(.gray)
+    }
+  }
+  
+}
+
+struct WindRow: View {
+  
+  var speed: String?
+  var time: String?
+  
+  var body: some View {
+    HStack{
+      Image(systemName: "wind")
+        .foregroundColor(.green)
+      OptionalText(txt: speed)
+      NonOptionalText(txt: "@").foregroundColor(.yellow)
+      OptionalText(txt: time).foregroundColor(.blue)
+    }
+    Divider()
   }
   
 }
@@ -34,10 +57,16 @@ struct LuxRow: View {
   
   var body: some View {
     HStack {
+      Image(systemName: "waveform.circle.fill")
+        .foregroundColor(.green)
       OptionalText(txt: uv)
       Divider()
+      Image(systemName: "light.max")
+        .foregroundColor(.green)
       OptionalText(txt: illuminance)
       Divider()
+      Image(systemName: "sun.max.circle")
+        .foregroundColor(.green)
       OptionalText(txt: solar)
     }
     Divider()
@@ -54,13 +83,19 @@ struct StationRow: View {
 
   var body: some View {
     HStack {
+      Image(systemName: "thermometer")
+        .foregroundColor(.green)
       OptionalText(txt: temp)
       Divider()
+      Image(systemName: "humidity.fill")
+        .foregroundColor(.green)
       OptionalText(txt: humid)
       Divider()
+      Image(systemName: "rectangle.compress.vertical")
+        .foregroundColor(.green)
       OptionalText(txt: pressure)
-      NonOptionalText(txt: "@")
-      OptionalText(txt: time)
+      NonOptionalText(txt: "@").foregroundColor(.yellow)
+      OptionalText(txt: time).foregroundColor(.blue)
     }
     Divider()
   }
@@ -71,19 +106,32 @@ struct StrikeRainRow: View {
   
   var strikeCount: String?
   var strikeDistance: String?
-  var rain: String?
 
   var body: some View {
     HStack {
+      
+      Image(systemName: "cloud.bolt")
+        .foregroundColor(.green)
       OptionalText(txt: strikeCount)
       Divider()
       OptionalText(txt: strikeDistance)
-      Divider()
-      OptionalText(txt: rain)
     }
     Divider()
   }
   
+}
+
+struct RainRow: View {
+  var rain: String?
+
+  var body: some View {
+    HStack {
+      Image(systemName: "cloud.rain.fill")
+        .foregroundColor(.green)
+      OptionalText(txt: rain)
+    }
+    Divider()
+  }
 }
 
 struct DeviceRow: View {
@@ -91,11 +139,15 @@ struct DeviceRow: View {
   var serial: String?
   var uptime: String?
   var voltage: String?
+  
 
   var body: some View {
+    
     HStack {
       
-      NonOptionalText(txt: "🛰", size: 9)
+      Image(systemName: "sensor.tag.radiowaves.forward.fill")
+        .foregroundColor(.green)
+      
       OptionalText(txt: serial, size: 9)
       
       Divider()
@@ -104,13 +156,16 @@ struct DeviceRow: View {
       
       Divider()
       
-      NonOptionalText(txt: "🔋", size: 9)
+      Image(systemName: "battery.100.bolt")
+        .foregroundColor(.green)
+      
       OptionalText(txt: voltage, size: 9)
       
     }
     .frame(alignment: .leading)
     
     Divider()
+    
   }
   
 }
@@ -123,7 +178,8 @@ struct HubRow: View {
   var body: some View {
     HStack {
       
-      NonOptionalText(txt: "🎛", size: 9)
+      Image(systemName: "badge.plus.radiowaves.right")
+        .foregroundColor(.green)
       OptionalText(txt: serial, size: 9)
       
       Divider()
@@ -145,11 +201,12 @@ struct WeatherView: View {
   var body: some View {
     
     VStack {
-
-      OptionalText(txt: model.rapidWind?.windString)
       
-      Divider()
-
+      WindRow(
+        speed: model.rapidWind?.speedString,
+        time: model.rapidWind?.timeString
+      )
+      
       StationRow(
         temp: model.stationObservation?.tempString,
         humid: model.stationObservation?.humidString,
@@ -165,10 +222,13 @@ struct WeatherView: View {
       
       StrikeRainRow(
         strikeCount: model.stationObservation?.strikeCountString,
-        strikeDistance: model.stationObservation?.strikeDistanceString,
-        rain: model.stationObservation?.rainString
+        strikeDistance: model.stationObservation?.strikeDistanceString
       )
                 
+      RainRow(
+        rain: model.stationObservation?.rainString
+      )
+      
       DeviceRow(
         serial: model.deviceStatus?.serialNumber,
         uptime: model.deviceStatus?.uptimeString,
